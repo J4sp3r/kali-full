@@ -1,0 +1,21 @@
+on:
+  push:
+    branches:
+    - master
+name: Build & Push container
+jobs:
+  dockerRegistry:
+    name: Docker Registry
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Login to registry
+      uses: actions/docker/login@master
+      env:
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        DOCKER_REGISTRY_URL: "docker.pkg.github.com"
+    - name: Build and push
+      uses: actions/docker/cli@master
+      with:
+        args: build -t docker.pkg.github.com/J4sp3r/kali-full . && docker push docker.pkg.github.com/J4sp3r/kali-full
