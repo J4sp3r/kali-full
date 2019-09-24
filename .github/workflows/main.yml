@@ -18,4 +18,4 @@ jobs:
     - name: Build and push
       uses: actions/docker/cli@master
       with:
-        args: build -t docker.pkg.github.com/J4sp3r/kali-full . && docker push docker.pkg.github.com/J4sp3r/kali-full
+        args: build -t docker.pkg.github.com/j4sp3r/kali-full . && docker push docker.pkg.github.com/j4sp3r/kali-full
